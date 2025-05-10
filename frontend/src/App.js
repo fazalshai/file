@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
+const BASE_URL = 'https://file-x1wi.onrender.com';
+
 function App() {
   return (
     <Router>
@@ -40,7 +42,7 @@ function UploadFile() {
 
     try {
       setIsLoading(true);
-      const response = await axios.post('http://localhost:5000/api/upload', formData, {
+      const response = await axios.post(`${BASE_URL}/api/upload`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       Swal.fire('Success!', `File uploaded! Random code: ${response.data.random_number}`, 'success');
@@ -71,7 +73,7 @@ function SearchCode() {
 
   const handleSearch = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/search/${searchQuery}`);
+      const res = await axios.get(`${BASE_URL}/api/search/${searchQuery}`);
       setFile(res.data);
     } catch {
       Swal.fire('Error!', 'File not found', 'error');
@@ -93,7 +95,7 @@ function SearchCode() {
           <p>File Name: {file.fileName}</p>
           <p>Name: {file.name}</p>
           <p>Date: {new Date(file.date).toLocaleString()}</p>
-          <a href={`http://localhost:5000/uploads/${file.fileName}`} target="_blank" rel="noreferrer">Download</a>
+          <a href={`${BASE_URL}/uploads/${file.fileName}`} target="_blank" rel="noreferrer">Download</a>
         </div>
       )}
     </div>
