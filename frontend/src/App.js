@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 
-const BASE_URL = 'https://file-x1wi.onrender.com';
+const BASE_URL = 'https://file-x1wi.onrender.com'; // ✅ MAKE SURE THIS IS CORRECT
 
 function App() {
   return (
@@ -47,7 +47,8 @@ function UploadFile() {
       });
       Swal.fire('Success!', `File uploaded! Random code: ${response.data.random_number}`, 'success');
     } catch (error) {
-      Swal.fire('Error!', error.response?.data?.error || 'Upload failed', 'error');
+      console.error(error);
+      Swal.fire('Error!', error.response?.data?.error || 'Error uploading file', 'error');
     } finally {
       setIsLoading(false);
     }
