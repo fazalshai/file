@@ -13,7 +13,7 @@ function App() {
           <nav>
             <ul>
               <li><Link to="/">Home</Link></li>
-              <li><Link to="/search-code">Search Code</Link></li>
+              <li><Link to="/search-code">Search------Code</Link></li>
             </ul>
           </nav>
         </header>
